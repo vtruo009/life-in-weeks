@@ -1,10 +1,9 @@
-function App() {
+import Calendar from "./Calendar"
 
-  return (
-    <>
-      Wheel of Life application!
-    </>
-  )
+function App() {
+	return (
+		<Calendar />
+	);
 }
 
 export default App
