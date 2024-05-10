@@ -19,11 +19,11 @@ const StyledGrid = styled.div`
 `;
 
 function Calendar() {
-    const LIFE: number = 104 // 4002
+    const LIFE: number = 4056
 
     return (
         <StyledCalendar>
-            <h1>{LIFE / 52} Years of Age</h1>
+            <h1>{Math.ceil(LIFE / 52)} Years of My Life</h1>
             <StyledGrid>
                 {Array(LIFE).fill(<Week />)}
             </StyledGrid>
