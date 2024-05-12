@@ -3,8 +3,8 @@ import Week from "./Week";
 
 const StyledYear = styled.div`
     display: grid;
-	grid-template-columns: repeat(52, minmax(8px, 1fr));
-	grid-gap: 10px;
+    grid-template-columns: repeat(52, minmax(8px, 1fr));
+    grid-gap: 10px;
     margin: 0px 0px 6px 0px;
 `;
 
