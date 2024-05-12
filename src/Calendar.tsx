@@ -2,14 +2,14 @@ import styled from "styled-components"
 import Year from "./Year";
 
 const StyledCalendar = styled.div`
-	width: fit-content;
-	height: auto;
+    width: fit-content;
+    height: auto;
     display: flex;
     flex-direction: column;
     align-items: center;
-	border: 1px solid black;
-	background-color: #F5F5F2;
-	padding: 10px;
+    border: 1px solid black;
+    background-color: #F5F5F2;
+    padding: 10px;
 `;
 
 const StyledCalendarGrid = styled.div`
@@ -23,7 +23,7 @@ const StyledRow = styled.div<{ show: boolean }>`
     grid-template-areas: "12px 1fr";
     grid-gap: 5px;
     margin: 0px 5px;
-    
+
     .age-count {
         text-align: end;
         width: 12px;
