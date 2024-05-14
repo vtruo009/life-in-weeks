@@ -1,5 +1,8 @@
 import styled from "styled-components"
 import Year from "./Year";
+import Week from "./Week";
+import { WEEK_RATING } from "./mixins";
+import ColorLegend from "./ColorLegend";
 
 const StyledCalendar = styled.div`
     width: fit-content;
@@ -34,20 +37,23 @@ const StyledRow = styled.div<{ show: boolean }>`
 `;
 
 function Calendar() {
-    const YEARS_IN_LIFE: number = 80;
+    const YEARS_IN_LIFE: number = 10;
 
     return (
         <StyledCalendar>
             <h1>{YEARS_IN_LIFE} Years of My Life</h1>
+            <ColorLegend />
             <StyledCalendarGrid>
-                {Array.from({ length: YEARS_IN_LIFE }, (_, i) => (
-                    <StyledRow show={i % 5 === 0}>
-                        <p id="age-count" className="age-count">{i}</p>
-                        <Year key={i} year={i} />
-                    </StyledRow>
-                ))}
-            </StyledCalendarGrid>
-        </StyledCalendar>
+                {
+                    Array.from({ length: YEARS_IN_LIFE }, (_, i) => (
+                        <StyledRow show={i % 5 === 0}>
+                            <p id="age-count" className="age-count">{i}</p>
+                            <Year key={i} year={i} />
+                        </StyledRow>
+                    ))
+                }
+            </StyledCalendarGrid >
+        </StyledCalendar >
     );
 };
 
