@@ -20,14 +20,12 @@ const StyledLabel = styled.div`
 function ColorLegend() {
     return (
         <StyledColorKey>
-            {
-                Array.from(Object.values(WEEK_RATING), (rating, i) => (
-                    <StyledLabel>
-                        <Square key={rating} color={COLOR_MAP[rating]} usedAs={SQUARE_USAGE.LEGEND} />
-                        <p>{rating}</p>
-                    </StyledLabel>
-                ))
-            }
+            {Array.from(Object.values(WEEK_RATING), (rating, i) => (
+                <StyledLabel>
+                    <Square key={rating} color={COLOR_MAP[rating]} usedAs={SQUARE_USAGE.LEGEND} />
+                    <p>{rating}</p>
+                </StyledLabel>
+            ))}
         </StyledColorKey>
     );
 }
