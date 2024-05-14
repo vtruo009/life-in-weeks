@@ -14,9 +14,9 @@ const StyledWeek = styled.button<{ $squareColor: string }>`
 `;
 
 interface SquareProps {
-    color: string;
+    color?: string;
     disabled: boolean;
-}
+};
 
 function Square({ color = 'transparent', disabled }: SquareProps) {
     return (

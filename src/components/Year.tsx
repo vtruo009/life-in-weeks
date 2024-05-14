@@ -28,7 +28,7 @@ function Year(props: { year: number }) {
             {Array.from({ length: NUM_WEEKS_IN_YEAR }, (_, i) => (
                 <StyledColumn $showColumnCounter={(i === 0 || (i + 1) % 5 === 0)}>
                     {props.year === 0 && <p id="week-count" className="week-count">{i + 1}</p>}
-                    <Square key={i} color='' disabled={false} />
+                    <Square key={i} disabled={false} />
                 </StyledColumn>
             ))}
         </StyledYear>
