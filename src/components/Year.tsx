@@ -1,5 +1,6 @@
 import styled from "styled-components";
-import Week from "./Week";
+import Square from "../common/Square";
+import { SQUARE_USAGE } from "../utils/mixins";
 
 const StyledYear = styled.div`
     display: grid;
@@ -28,7 +29,7 @@ function Year(props: { year: number }) {
             {Array.from({ length: NUM_WEEKS_IN_YEAR }, (_, i) => (
                 <StyledColumn show={(i === 0 || (i + 1) % 5 === 0)}>
                     {props.year === 0 && <p id="week-count" className="week-count">{i + 1}</p>}
-                    <Week key={i} />
+                    <Square key={i} color='none' usedAs={SQUARE_USAGE.YEAR} />
                 </StyledColumn>
             ))}
         </StyledYear>

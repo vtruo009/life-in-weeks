@@ -1,12 +1,13 @@
 import styled from "styled-components";
-import Week from "./Week";
-import { WEEK_RATING } from "./mixins";
+import Square from "../common/Square";
+import { COLOR_MAP, SQUARE_USAGE, WEEK_RATING } from "../utils/mixins";
 
 const StyledColorKey = styled.div`
     width: 100%;
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
+    margin-bottom: .67em;
 `;
 
 const StyledLabel = styled.div`
@@ -20,10 +21,10 @@ function ColorLegend() {
     return (
         <StyledColorKey>
             {
-                Array.from({ length: Object.keys(WEEK_RATING).length }, (_, i) => (
+                Array.from(Object.values(WEEK_RATING), (rating, i) => (
                     <StyledLabel>
-                        <Week key={Object.values(WEEK_RATING)[i]} />
-                        <p>{Object.values(WEEK_RATING)[i]}</p>
+                        <Square key={rating} color={COLOR_MAP[rating]} usedAs={SQUARE_USAGE.LEGEND} />
+                        <p>{rating}</p>
                     </StyledLabel>
                 ))
             }
