@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import Square from "../common/Square";
-import { COLOR_MAP, SQUARE_USAGE, WEEK_RATING } from "../utils/mixins";
+import { COLOR_MAP, WEEK_RATING } from "../utils/mixins";
 
 const StyledColorKey = styled.div`
     width: 100%;
@@ -22,7 +22,7 @@ function ColorLegend() {
         <StyledColorKey>
             {Array.from(Object.values(WEEK_RATING), (rating) => (
                 <StyledLabel>
-                    <Square key={rating} color={COLOR_MAP[rating]} usedAs={SQUARE_USAGE.LEGEND} />
+                    <Square key={rating} color={COLOR_MAP[rating]} disabled />
                     <p>{rating}</p>
                 </StyledLabel>
             ))}
