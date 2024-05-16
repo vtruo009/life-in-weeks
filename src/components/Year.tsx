@@ -22,12 +22,12 @@ const StyledColumn = styled.div<{ $showColumnCounter: boolean }>`
     }
 `;
 
-function Year(props: { year: number }) {
+function Year({ year }: { year: number }) {
     return (
         <StyledYear>
             {Array.from({ length: NUM_WEEKS_IN_YEAR }, (_, i) => (
                 <StyledColumn $showColumnCounter={(i === 0 || (i + 1) % 5 === 0)}>
-                    {props.year === 0 && <p id="week-count" className="week-count">{i + 1}</p>}
+                    {year === 0 && <p id="week-count" className="week-count">{i + 1}</p>}
                     <Square key={i} disabled={false} />
                 </StyledColumn>
             ))}

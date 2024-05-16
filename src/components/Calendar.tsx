@@ -1,6 +1,6 @@
 import styled from "styled-components"
 import Year from "./Year";
-import ColorLegend from "./ColorLegend";
+import Rating from "./Rating";
 
 const StyledCalendar = styled.div`
     width: fit-content;
@@ -35,12 +35,12 @@ const StyledRow = styled.div<{ $showRowCounter: boolean }>`
 `;
 
 function Calendar() {
-    const YEARS_IN_LIFE: number = 80;
+    const YEARS_IN_LIFE: number = 10;
 
     return (
         <StyledCalendar>
             <h1>{YEARS_IN_LIFE} Years of My Life</h1>
-            <ColorLegend />
+            <Rating compact={false} />
             <StyledCalendarGrid>
                 {Array.from({ length: YEARS_IN_LIFE }, (_, i) => (
                     <StyledRow $showRowCounter={i % 5 === 0}>

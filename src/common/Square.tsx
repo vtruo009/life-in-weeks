@@ -1,4 +1,7 @@
 import styled from "styled-components";
+import { ArrowContainer, Popover } from 'react-tiny-popover';
+import Rating from "../components/Rating";
+import React from "react";
 
 const StyledWeek = styled.button<{ $squareColor: string }>`
     border: 1px solid black;
@@ -19,8 +22,22 @@ interface SquareProps {
 };
 
 function Square({ color = 'transparent', disabled }: SquareProps) {
+    const [isOpen, setIsOpen] = React.useState(false);
+
     return (
-        <StyledWeek $squareColor={color} disabled={disabled} onClick={() => console.log('button is clicked')} />
+        <Popover isOpen={isOpen} containerStyle={{ padding: '5px' }} onClickOutside={() => setIsOpen(false)} content={({ childRect, popoverRect }) =>
+            <ArrowContainer
+                position='top'
+                arrowSize={8}
+                arrowStyle={{ bottom: '5px' }}
+                arrowColor={'white'}
+                childRect={childRect}
+                popoverRect={popoverRect}
+            >
+                <Rating compact />
+            </ArrowContainer>}>
+            <StyledWeek $squareColor={color} disabled={disabled} onClick={() => setIsOpen(!isOpen)} />
+        </Popover>
     );
 }
 

@@ -2,12 +2,13 @@ import styled from "styled-components";
 import Square from "../common/Square";
 import { COLOR_MAP, WEEK_RATING } from "../utils/mixins";
 
-const StyledColorKey = styled.div`
+const StyledColorLegend = styled.div<{ $compact: boolean }>`
     width: 100%;
+    padding: 8px 3px;
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
-    margin-bottom: .67em;
+    background-color: ${({ $compact }) => $compact ? "white" : "transparent"};
 `;
 
 const StyledLabel = styled.div`
@@ -17,17 +18,17 @@ const StyledLabel = styled.div`
     gap: 6px;
 `;
 
-function ColorLegend() {
+function Rating({ compact }: { compact: boolean }) {
     return (
-        <StyledColorKey>
+        <StyledColorLegend $compact={compact}>
             {Array.from(Object.values(WEEK_RATING), (rating) => (
                 <StyledLabel>
                     <Square key={rating} color={COLOR_MAP[rating]} disabled />
-                    <p>{rating}</p>
+                    {!compact && <p>{rating}</p>}
                 </StyledLabel>
             ))}
-        </StyledColorKey>
+        </StyledColorLegend>
     );
 }
 
-export default ColorLegend;
+export default Rating;
