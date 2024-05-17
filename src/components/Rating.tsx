@@ -7,8 +7,8 @@ const StyledColorLegend = styled.div<{ $compact: boolean }>`
     padding: 8px 3px;
     display: flex;
     flex-direction: row;
-    justify-content: space-evenly;
-    background-color: ${({ $compact }) => $compact ? "white" : "transparent"};
+    justify-content: space-around;
+    background-color: ${({ $compact }) => $compact ? "lightgray" : "transparent"};
 `;
 
 const StyledLabel = styled.div`

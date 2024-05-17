@@ -35,7 +35,7 @@ const StyledRow = styled.div<{ $showRowCounter: boolean }>`
 `;
 
 function Calendar() {
-    const YEARS_IN_LIFE: number = 10;
+    const YEARS_IN_LIFE: number = 80;
 
     return (
         <StyledCalendar>

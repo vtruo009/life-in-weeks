@@ -25,12 +25,13 @@ function Square({ color = 'transparent', disabled }: SquareProps) {
     const [isOpen, setIsOpen] = React.useState(false);
 
     return (
-        <Popover isOpen={isOpen} containerStyle={{ padding: '5px' }} onClickOutside={() => setIsOpen(false)} content={({ childRect, popoverRect }) =>
+        <Popover isOpen={isOpen} containerStyle={{ padding: '5px', top: '5px' }} onClickOutside={() => setIsOpen(false)} content={({ childRect, popoverRect }) =>
             <ArrowContainer
                 position='top'
                 arrowSize={8}
                 arrowStyle={{ bottom: '5px' }}
-                arrowColor={'white'}
+                style={{ width: '100px', display: 'flex' }}
+                arrowColor={'lightgray'}
                 childRect={childRect}
                 popoverRect={popoverRect}
             >
