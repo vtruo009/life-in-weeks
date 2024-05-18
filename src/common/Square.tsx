@@ -3,7 +3,7 @@ import { ArrowContainer, Popover } from 'react-tiny-popover';
 import Rating from "../components/Rating";
 import React from "react";
 
-const StyledWeek = styled.button<{ $squareColor: string }>`
+const StyledSquare = styled.button<{ $squareColor: string }>`
     border: 1px solid black;
     width: 14px;
     height: 14px;
@@ -18,10 +18,10 @@ const StyledWeek = styled.button<{ $squareColor: string }>`
 
 interface SquareProps {
     color?: string;
-    disabled: boolean;
+    disabled?: boolean;
 };
 
-function Square({ color = 'transparent', disabled }: SquareProps) {
+function Square({ color = 'transparent', disabled = false }: SquareProps) {
     const [isOpen, setIsOpen] = React.useState(false);
 
     return (
@@ -37,7 +37,7 @@ function Square({ color = 'transparent', disabled }: SquareProps) {
             >
                 <Rating compact />
             </ArrowContainer>}>
-            <StyledWeek $squareColor={color} disabled={disabled} onClick={() => setIsOpen(!isOpen)} />
+            <StyledSquare $squareColor={color} disabled={disabled} onClick={() => { setIsOpen(!isOpen); console.log(isOpen) }} />
         </Popover>
     );
 }
