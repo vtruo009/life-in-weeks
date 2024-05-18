@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import Square from "../common/Square";
+import EmptySquare from "./EmptySquare";
 
 const NUM_WEEKS_IN_YEAR: number = 52;
 
@@ -28,7 +28,7 @@ function Year({ year }: { year: number }) {
             {Array.from({ length: NUM_WEEKS_IN_YEAR }, (_, i) => (
                 <StyledColumn $showColumnCounter={(i === 0 || (i + 1) % 5 === 0)}>
                     {year === 0 && <p id="week-count" className="week-count">{i + 1}</p>}
-                    <Square key={i} disabled={false} />
+                    <EmptySquare />
                 </StyledColumn>
             ))}
         </StyledYear>
