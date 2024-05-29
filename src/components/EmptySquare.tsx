@@ -2,7 +2,6 @@ import React from "react";
 import Square from "../common/Square";
 import { Popover, ArrowContainer } from "react-tiny-popover";
 import Rating from "./Rating";
-import ReactDOM from "react-dom";
 
 function EmptySquare() {
     const [isOpen, setIsOpen] = React.useState(false);

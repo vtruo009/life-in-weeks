@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import React, { Dispatch, SetStateAction } from "react";
+import React from "react";
 
 const StyledSquare = styled.button<{ $color: string }>`
     border: 1px solid black;

@@ -21,10 +21,10 @@ const StyledLabel = styled.div`
 
 interface RatingProps {
     compact: boolean;
-    handleClick: React.Dispatch<React.SetStateAction<string>>;
+    handleClick?: React.Dispatch<React.SetStateAction<string>>;
 }
 
-function Rating({ compact, handleClick }: RatingProps) {
+function Rating({ compact, handleClick: setColor }: RatingProps) {
     return (
         <StyledColorLegend $compact={compact}>
             {Array.from(Object.values(WEEK_RATING), (rating) => (
@@ -33,7 +33,7 @@ function Rating({ compact, handleClick }: RatingProps) {
                         key={rating}
                         color={COLOR_MAP[rating]}
                         disabled={!compact}
-                        handleClick={() => handleClick(COLOR_MAP[rating])}
+                        handleClick={() => setColor ? setColor(COLOR_MAP[rating]) : null}
                     />
                     {!compact && <p>{rating}</p>}
                 </StyledLabel>
