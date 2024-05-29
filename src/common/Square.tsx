@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import React from "react";
+import React, { Dispatch, SetStateAction } from "react";
 
 const StyledSquare = styled.button<{ $color: string }>`
     border: 1px solid black;
@@ -15,12 +15,12 @@ const StyledSquare = styled.button<{ $color: string }>`
 `;
 
 interface SquareProps {
-    color?: string;
+    color: string;
     disabled?: boolean;
     handleClick?: () => void;
 };
 
-const Square = React.forwardRef<HTMLButtonElement, SquareProps>(({ color = 'transparent', disabled = false, handleClick }, ref) => {
+const Square = React.forwardRef<HTMLButtonElement, SquareProps>(({ color, disabled = false, handleClick }, ref) => {
     return (
         <StyledSquare $color={color} disabled={disabled} onClick={handleClick} ref={ref} />
     );

@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import Square from "../common/Square";
 import { COLOR_MAP, WEEK_RATING } from "../utils/mixins";
+import React from "react";
 
 const StyledColorLegend = styled.div<{ $compact: boolean }>`
     width: 100%;
@@ -18,12 +19,22 @@ const StyledLabel = styled.div`
     gap: 6px;
 `;
 
-function Rating({ compact }: { compact: boolean }) {
+interface RatingProps {
+    compact: boolean;
+    handleClick: React.Dispatch<React.SetStateAction<string>>;
+}
+
+function Rating({ compact, handleClick }: RatingProps) {
     return (
         <StyledColorLegend $compact={compact}>
             {Array.from(Object.values(WEEK_RATING), (rating) => (
                 <StyledLabel>
-                    <Square key={rating} color={COLOR_MAP[rating]} disabled />
+                    <Square
+                        key={rating}
+                        color={COLOR_MAP[rating]}
+                        disabled={!compact}
+                        handleClick={() => handleClick(COLOR_MAP[rating])}
+                    />
                     {!compact && <p>{rating}</p>}
                 </StyledLabel>
             ))}

@@ -2,9 +2,11 @@ import React from "react";
 import Square from "../common/Square";
 import { Popover, ArrowContainer } from "react-tiny-popover";
 import Rating from "./Rating";
+import ReactDOM from "react-dom";
 
 function EmptySquare() {
     const [isOpen, setIsOpen] = React.useState(false);
+    const [color, setColor] = React.useState('transparent');
     const buttonRef = React.useRef<HTMLButtonElement>(null);
 
     return (
@@ -18,9 +20,9 @@ function EmptySquare() {
                 childRect={childRect}
                 popoverRect={popoverRect}
             >
-                <Rating compact />
+                <Rating compact handleClick={setColor} />
             </ArrowContainer>}>
-            <Square handleClick={() => setIsOpen(!isOpen)} ref={buttonRef} />
+            <Square color={color} handleClick={() => setIsOpen(!isOpen)} ref={buttonRef} />
         </Popover>
     )
 }
