@@ -1,10 +1,12 @@
 import styled from "styled-components"
 import Year from "./Year";
 import Rating from "./Rating";
+import Settings from "./Settings";
 
 const StyledCalendar = styled.div`
     width: fit-content;
     height: auto;
+    position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -39,6 +41,7 @@ function Calendar() {
 
     return (
         <StyledCalendar>
+            <Settings />
             <h1>{YEARS_IN_LIFE} Years of My Life</h1>
             <Rating compact={false} />
             <StyledCalendarGrid>
