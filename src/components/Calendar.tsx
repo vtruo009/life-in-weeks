@@ -54,6 +54,6 @@ function Calendar() {
             </StyledCalendarGrid>
         </StyledCalendar>
     );
-};
+}
 
 export default Calendar;
