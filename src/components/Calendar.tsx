@@ -1,7 +1,7 @@
 import styled from "styled-components"
 import Year from "./Year";
 import Rating from "./Rating";
-import Settings from "./Settings";
+import Settings from "./SettingsPage/Settings";
 
 const StyledCalendar = styled.div`
     width: fit-content;
