@@ -1,9 +1,18 @@
 import { styled } from "styled-components";
 import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
-import { Dialog, DialogContent, InputAdornment, InputLabel, OutlinedInput, TextField } from "@mui/material";
+import {
+    Button,
+    Dialog,
+    DialogActions,
+    DialogContent,
+    DialogContentText,
+    DialogTitle,
+    InputAdornment,
+    TextField
+} from "@mui/material";
 import React from "react";
 
-const StyledSettings = styled.button`
+const StyledSettingsButton = styled.button`
     position: absolute;
     top: 0%;
     right: 0%;
@@ -19,9 +28,10 @@ const StyledSettings = styled.button`
     }
 `;
 
-const StyledTextFieldsContainer = styled.div`
+const StyledTextFieldContainer = styled.div`
     display: flex;
     flex-direction: row;
+    margin: 20px 0px 4px;
     gap: 10px;
 `;
 
@@ -34,24 +44,52 @@ function Settings() {
 
     return (
         <>
-            <StyledSettings onClick={() => setIsOpen(true)}>
+            <StyledSettingsButton onClick={() => setIsOpen(true)}>
                 <SettingsOutlinedIcon />
-            </StyledSettings>
-            <Dialog open={isOpen}>
-                <DialogContent>
-                    <StyledTextFieldsContainer>
-                        <TextField id="outlined-basic" label="DOB" size="small" />
-                        <OutlinedInput
-                            id="outlined-basic"
-                            label={<InputLabel shrink>Life Expectancy</InputLabel>}
+            </StyledSettingsButton>
+            <Dialog
+                open={isOpen}
+                PaperProps={{
+                    component: 'form',
+                    onSubmit: (e: React.FormEvent<HTMLFormElement>) => {
+                        e.preventDefault();
+                        const formData = new FormData(e.currentTarget);
+                        const formJSON = Object.fromEntries((formData as any).entries());
+                        saveSettings();
+                    }
+                }}
+            >
+                <DialogTitle>Settings</DialogTitle>
+                <DialogContent >
+                    <DialogContentText>
+                        Please enter date of birth and life expectancy. Once saved, you will not be able to change your settings without resetting.
+                    </DialogContentText>
+                    <StyledTextFieldContainer>
+                        <TextField
+                            name="dob"
+                            label="DOB"
+                            type="date"
                             size="small"
-                            defaultValue={76}
-                            endAdornment={<InputAdornment position="end">years</InputAdornment>}
+                            variant="outlined"
+                            fullWidth
+                            InputLabelProps={{ shrink: true }}
                         />
-                    </StyledTextFieldsContainer>
-                    <button onClick={() => setIsOpen(false)}>Cancel</button>
-                    <button onClick={saveSettings}>Save</button>
+                        <TextField
+                            name="life-expectancy"
+                            label="Life Expectancy"
+                            type="number"
+                            size="small"
+                            variant="outlined"
+                            fullWidth
+                            defaultValue={76}
+                            InputProps={{ endAdornment: <InputAdornment position="end">years</InputAdornment> }}
+                        />
+                    </StyledTextFieldContainer>
                 </DialogContent>
+                <DialogActions>
+                    <Button variant="outlined" onClick={() => setIsOpen(false)}>Cancel</Button>
+                    <Button variant="contained" type="submit" >Save</Button>
+                </DialogActions>
             </Dialog>
         </>
     );
