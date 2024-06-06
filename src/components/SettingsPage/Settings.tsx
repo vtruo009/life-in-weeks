@@ -10,7 +10,8 @@ import {
     InputAdornment,
     TextField
 } from "@mui/material";
-import React from "react";
+import React, { useContext } from "react";
+import SettingsContext from "../../contexts/SettingsContext";
 
 const StyledSettingsButton = styled.button`
     position: absolute;
@@ -37,8 +38,12 @@ const StyledTextFieldContainer = styled.div`
 
 function Settings() {
     const [isOpen, setIsOpen] = React.useState(false);
+    const settingsContext = useContext(SettingsContext);
 
-    function saveSettings() {
+    function saveSettings(e: React.FormEvent<HTMLFormElement>) {
+        e.preventDefault();
+        settingsContext.setDOB(new Date((document.getElementsByName('dob')[0] as HTMLInputElement).value));
+        settingsContext.setLifeExpectancy((document.getElementsByName('life-expectancy')[0] as HTMLInputElement).valueAsNumber);
         setIsOpen(false);
     }
 
@@ -51,18 +56,15 @@ function Settings() {
                 open={isOpen}
                 PaperProps={{
                     component: 'form',
-                    onSubmit: (e: React.FormEvent<HTMLFormElement>) => {
-                        e.preventDefault();
-                        const formData = new FormData(e.currentTarget);
-                        const formJSON = Object.fromEntries((formData as any).entries());
-                        saveSettings();
-                    }
+                    onSubmit: (e: React.FormEvent<HTMLFormElement>) => saveSettings(e)
                 }}
             >
                 <DialogTitle>Settings</DialogTitle>
                 <DialogContent >
                     <DialogContentText>
-                        Please enter date of birth and life expectancy. Once saved, you will not be able to change your settings without resetting.
+                        Please enter date of birth and life expectancy.
+                        <br />
+                        Note: changing the values will reset the calendar and ratings will be lost.
                     </DialogContentText>
                     <StyledTextFieldContainer>
                         <TextField
@@ -72,6 +74,7 @@ function Settings() {
                             size="small"
                             variant="outlined"
                             fullWidth
+                            defaultValue={settingsContext.dob.toISOString().substring(0, 10)}
                             InputLabelProps={{ shrink: true }}
                         />
                         <TextField
@@ -81,7 +84,7 @@ function Settings() {
                             size="small"
                             variant="outlined"
                             fullWidth
-                            defaultValue={76}
+                            defaultValue={settingsContext.lifeExpectancy}
                             InputProps={{ endAdornment: <InputAdornment position="end">years</InputAdornment> }}
                         />
                     </StyledTextFieldContainer>
