@@ -1,3 +1,6 @@
+export const WEEK: number = 1000 * 60 * 60 * 24 * 7;
+export const NUM_WEEKS_IN_YEAR: number = 52;
+
 export enum WEEK_RATING {
     BAD = 'Bad',
     NOT_TOO_BAD = 'Not too bad',
