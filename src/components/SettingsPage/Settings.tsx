@@ -28,6 +28,43 @@ const StyledSettingsButton = styled.button`
     }
 `;
 
+const StyledDialog = styled(Dialog)`
+    .MuiPaper-root {
+        background-color: #F5F5F2;
+    }
+
+    .MuiButton-contained {
+        color: #2A2824;
+        background-color: #EBEBE8;
+
+        &:hover {
+            background-color: #E0E0DD;
+        }
+    }
+
+    .MuiButton-outlined {
+        color: #2A2824;
+        border-color: #2A2824;
+
+        &:hover {
+            background-color: rgba(40, 42, 36, 0.05);
+            border-color: #2A2824;
+        }
+    }
+
+    .MuiInputLabel-root, .MuiOutlinedInput-root {
+        &.Mui-focused {
+            color: #2A2824;
+            border-color: #2A2824;
+
+            .MuiOutlinedInput-notchedOutline {
+                border-color: #2A2824;
+            }
+        }
+    }
+    
+`;
+
 const StyledTextFieldContainer = styled.div`
     display: flex;
     flex-direction: row;
@@ -47,7 +84,7 @@ function Settings() {
             <StyledSettingsButton onClick={() => setIsOpen(true)}>
                 <SettingsOutlinedIcon />
             </StyledSettingsButton>
-            <Dialog
+            <StyledDialog
                 open={isOpen}
                 PaperProps={{
                     component: 'form',
@@ -90,7 +127,7 @@ function Settings() {
                     <Button variant="outlined" onClick={() => setIsOpen(false)}>Cancel</Button>
                     <Button variant="contained" type="submit" >Save</Button>
                 </DialogActions>
-            </Dialog>
+            </StyledDialog>
         </>
     );
 }
