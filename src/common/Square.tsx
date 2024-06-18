@@ -17,10 +17,10 @@ const StyledSquare = styled.button<{ $color: string }>`
 interface SquareProps {
     color: string;
     disabled?: boolean;
-    handleClick?: () => void;
+    OnClick?: () => void;
 };
 
-const Square = React.forwardRef<HTMLButtonElement, SquareProps>(({ color, disabled = false, handleClick }, ref) => {
+const Square = React.forwardRef<HTMLButtonElement, SquareProps>(({ color, disabled = false, OnClick: handleClick }, ref) => {
     return (
         <StyledSquare $color={color} disabled={disabled} onClick={handleClick} ref={ref} />
     );

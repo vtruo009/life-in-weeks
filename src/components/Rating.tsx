@@ -20,22 +20,22 @@ const StyledLabel = styled.div`
 `;
 
 interface RatingProps {
-    compact: boolean;
-    handleClick?: React.Dispatch<React.SetStateAction<string>>;
+    isCompact: boolean;
+    OnClick?: React.Dispatch<React.SetStateAction<string>>;
 }
 
-function Rating({ compact, handleClick: setColor }: RatingProps) {
+function Rating({ isCompact, OnClick: setColor }: RatingProps) {
     return (
-        <StyledColorLegend $compact={compact}>
+        <StyledColorLegend $compact={isCompact}>
             {Array.from(Object.values(WEEK_RATING), (rating) => (
                 <StyledLabel>
                     <Square
                         key={rating}
                         color={COLOR_MAP[rating]}
-                        disabled={!compact}
-                        handleClick={() => setColor ? setColor(COLOR_MAP[rating]) : null}
+                        disabled={!isCompact}
+                        OnClick={() => { if (setColor) setColor(COLOR_MAP[rating]) }}
                     />
-                    {!compact && <p>{rating}</p>}
+                    {!isCompact && <p>{rating}</p>}
                 </StyledLabel>
             ))}
         </StyledColorLegend>

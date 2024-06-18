@@ -19,9 +19,9 @@ function EmptySquare() {
                 childRect={childRect}
                 popoverRect={popoverRect}
             >
-                <Rating compact handleClick={setColor} />
+                <Rating compact OnClick={setColor} />
             </ArrowContainer>}>
-            <Square color={color} handleClick={() => setIsOpen(!isOpen)} ref={buttonRef} />
+            <Square color={color} OnClick={() => setIsOpen(!isOpen)} ref={buttonRef} />
         </Popover>
     )
 }

@@ -40,7 +40,7 @@ function Calendar() {
     return (
         <StyledCalendar>
             <h1>{YEARS_IN_LIFE} Years of My Life</h1>
-            <Rating compact={false} />
+            <Rating isCompact={false} />
             <StyledCalendarGrid>
                 {Array.from({ length: YEARS_IN_LIFE }, (_, i) => (
                     <StyledRow $showRowCounter={i % 5 === 0}>
