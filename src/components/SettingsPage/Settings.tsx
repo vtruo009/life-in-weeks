@@ -42,8 +42,8 @@ function Settings() {
 
     function saveSettings(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault();
-        settingsContext.setDOB(new Date((document.getElementsByName('dob')[0] as HTMLInputElement).value));
-        settingsContext.setLifeExpectancy((document.getElementsByName('life-expectancy')[0] as HTMLInputElement).valueAsNumber);
+        settingsContext.setDOB(new Date(e.currentTarget.dob.value));
+        settingsContext.setLifeExpectancy(e.currentTarget['life-expectancy'].valueAsNumber);
         setIsOpen(false);
     }
 
@@ -56,7 +56,7 @@ function Settings() {
                 open={isOpen}
                 PaperProps={{
                     component: 'form',
-                    onSubmit: (e: React.FormEvent<HTMLFormElement>) => saveSettings(e)
+                    onSubmit: saveSettings
                 }}
             >
                 <DialogTitle>Settings</DialogTitle>
