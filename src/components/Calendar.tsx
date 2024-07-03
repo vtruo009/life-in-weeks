@@ -1,9 +1,8 @@
-import React from "react";
 import styled from "styled-components"
 import Year from "./Year";
 import Rating from "./Rating";
 import Settings from "./SettingsPage/Settings";
-import { useSettingsContext } from "../contexts/SettingsContext";
+import { useSettingsContext } from "../contexts/helpers";
 import { WEEK } from "../utils/mixins";
 
 const StyledCalendar = styled.div`
@@ -47,7 +46,7 @@ function calculateNumWeeks(dob: Date): number {
 
 function Calendar() {
     const { dob, desiredAge } = useSettingsContext().state;
-    var numWeeks: number = calculateNumWeeks(dob);
+    let numWeeks: number = calculateNumWeeks(dob);
 
     return (
         <StyledCalendar>

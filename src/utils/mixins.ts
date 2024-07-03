@@ -7,7 +7,7 @@ export enum WEEK_RATING {
     MEH = 'Meh',
     PRETTY_GOOD = 'Pretty good',
     AWESOME = 'Awesome',
-};
+}
 
 export const COLOR_MAP: { [key in WEEK_RATING]: string } = {
     [WEEK_RATING.BAD]: '#E91E63',
