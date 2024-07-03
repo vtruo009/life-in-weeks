@@ -1,3 +1,4 @@
+import React from "react";
 import { styled } from "styled-components";
 import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
 import {
@@ -10,8 +11,7 @@ import {
     InputAdornment,
     TextField
 } from "@mui/material";
-import React, { useContext } from "react";
-import SettingsContext from "../../contexts/SettingsContext";
+import { useSettingsContext } from "../../contexts/SettingsContext";
 
 const StyledSettingsButton = styled.button`
     position: absolute;
@@ -38,12 +38,12 @@ const StyledTextFieldContainer = styled.div`
 
 function Settings() {
     const [isOpen, setIsOpen] = React.useState(false);
-    const settingsContext = useContext(SettingsContext);
+    const { state, dispatch } = useSettingsContext();
 
     function saveSettings(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault();
-        settingsContext.setDOB(new Date(e.currentTarget.dob.value));
-        settingsContext.setLifeExpectancy(e.currentTarget['life-expectancy'].valueAsNumber);
+        dispatch({ type: 'set_dob', payload: { ...state, dob: new Date(e.currentTarget.dob.value) } });
+        dispatch({ type: 'set_desired_age', payload: { ...state, desiredAge: e.currentTarget['life-expectancy'].valueAsNumber } });
         setIsOpen(false);
     }
 
@@ -74,7 +74,7 @@ function Settings() {
                             size="small"
                             variant="outlined"
                             fullWidth
-                            defaultValue={settingsContext.dob.toISOString().substring(0, 10)}
+                            defaultValue={state.dob.toISOString().substring(0, 10)}
                             InputLabelProps={{ shrink: true }}
                         />
                         <TextField
@@ -84,7 +84,7 @@ function Settings() {
                             size="small"
                             variant="outlined"
                             fullWidth
-                            defaultValue={settingsContext.lifeExpectancy}
+                            defaultValue={state.desiredAge}
                             InputProps={{ endAdornment: <InputAdornment position="end">years</InputAdornment> }}
                         />
                     </StyledTextFieldContainer>

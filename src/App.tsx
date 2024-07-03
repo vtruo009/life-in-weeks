@@ -1,14 +1,11 @@
-import React from "react";
 import Calendar from "./components/Calendar"
-import SettingsContext from "./contexts/SettingsContext";
+import { SettingsProvider } from "./contexts/SettingsContext";
 
 function App() {
-	const settings = React.useContext(SettingsContext);
-
 	return (
-		<SettingsContext.Provider value={{ ...settings }}>
+		<SettingsProvider>
 			<Calendar />
-		</SettingsContext.Provider>
+		</SettingsProvider>
 	);
 }
 

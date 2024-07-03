@@ -3,7 +3,7 @@ import styled from "styled-components"
 import Year from "./Year";
 import Rating from "./Rating";
 import Settings from "./SettingsPage/Settings";
-import SettingsContext from "../contexts/SettingsContext";
+import { useSettingsContext } from "../contexts/SettingsContext";
 import { WEEK } from "../utils/mixins";
 
 const StyledCalendar = styled.div`
@@ -46,16 +46,16 @@ function calculateNumWeeks(dob: Date): number {
 }
 
 function Calendar() {
-    const settings = React.useContext(SettingsContext);
-    var numWeeks: number = calculateNumWeeks(settings.dob);
+    const { dob, desiredAge } = useSettingsContext().state;
+    var numWeeks: number = calculateNumWeeks(dob);
 
     return (
         <StyledCalendar>
             <Settings />
-            <h1>{settings.lifeExpectancy} Years of My Life</h1>
+            <h1>{desiredAge} Years of My Life</h1>
             <Rating compact={false} />
             <StyledCalendarGrid>
-                {Array.from({ length: settings.lifeExpectancy }, (_, i) => (
+                {Array.from({ length: desiredAge }, (_, i) => (
                     <StyledRow $showRowCounter={i % 5 === 0}>
                         <p id="age-count" className="age-count">{i}</p>
                         <Year key={i} currentYear={i} weeksToDisable={numWeeks > 0 ? numWeeks -= 52 : -1} />

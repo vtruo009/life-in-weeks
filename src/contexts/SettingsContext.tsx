@@ -1,19 +1,54 @@
 import React from "react";
 
-interface SettingsContextProps {
+interface SettingsType {
     dob: Date;
-    lifeExpectancy: number;
-    setDOB: React.Dispatch<React.SetStateAction<Date>>;
-    setLifeExpectancy: React.Dispatch<React.SetStateAction<number>>;
+    desiredAge: number;
 }
 
-export const defaultSettings: SettingsContextProps = {
-    dob: new Date(1997, 3, 14),
-    lifeExpectancy: 76,
-    setDOB: () => { },
-    setLifeExpectancy: () => { },
-};
+interface Action {
+    type: 'set_dob' | 'set_desired_age';
+    payload: SettingsType;
+}
 
-const SettingsContext = React.createContext(defaultSettings);
+const DEFAULT_SETTINGS: SettingsType = {
+    dob: new Date(1989, 11, 13),
+    desiredAge: 76,
+}
 
-export default SettingsContext;
+const SettingsContext = React.createContext<{
+    state: SettingsType,
+    dispatch: React.Dispatch<Action>
+}>({
+    state: DEFAULT_SETTINGS,
+    dispatch: () => null,
+});
+
+function settingsReducer(state: SettingsType, action: Action): SettingsType {
+    const { type } = action;
+
+    switch (type) {
+        case 'set_dob':
+            return { ...state, dob: action.payload.dob as Date }
+        case 'set_desired_age':
+            return { ...state, desiredAge: action.payload.desiredAge as number }
+        default:
+            // throw new Error()
+            return state;
+    }
+}
+
+function SettingsProvider({ children }: { children: React.ReactNode }) {
+    const [state, dispatch] = React.useReducer(settingsReducer, DEFAULT_SETTINGS);
+
+    return (
+        <SettingsContext.Provider value={{ state, dispatch }} >
+            {children}
+        </SettingsContext.Provider>
+    )
+}
+
+function useSettingsContext() {
+    return React.useContext(SettingsContext);
+}
+
+export { useSettingsContext, SettingsProvider }
