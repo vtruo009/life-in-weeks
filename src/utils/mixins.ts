@@ -1,4 +1,4 @@
-export const WEEK: number = 1000 * 60 * 60 * 24 * 7;
+export const MS_IN_A_WEEK: number = 1000 * 60 * 60 * 24 * 7;
 export const NUM_WEEKS_IN_YEAR: number = 52;
 
 export enum WEEK_RATING {

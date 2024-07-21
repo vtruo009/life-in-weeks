@@ -2,8 +2,8 @@ import styled from "styled-components"
 import Year from "./Year";
 import Rating from "./Rating";
 import Settings from "./SettingsPage/Settings";
-import { useSettingsContext } from "../contexts/helpers";
-import { WEEK } from "../utils/mixins";
+import { useSettingsContext } from "../contexts/SettingsContext";
+import { NUM_WEEKS_IN_YEAR, MS_IN_A_WEEK } from "../utils/mixins";
 
 const StyledCalendar = styled.div`
     width: fit-content;
@@ -40,8 +40,8 @@ const StyledRow = styled.div<{ $showRowCounter: boolean }>`
 
 function calculateNumWeeks(dob: Date): number {
     const today = new Date();
-    const timeBetweenTwoDates = (today.getTime() - dob.getTime()) / WEEK;
-    return Math.round(timeBetweenTwoDates) + 52 - 1;
+    const timeBetweenTwoDates = (today.getTime() - dob.getTime()) / MS_IN_A_WEEK;
+    return Math.round(timeBetweenTwoDates);
 }
 
 function Calendar() {
@@ -57,7 +57,7 @@ function Calendar() {
                 {Array.from({ length: desiredAge }, (_, i) => (
                     <StyledRow $showRowCounter={i % 5 === 0}>
                         <p id="age-count" className="age-count">{i}</p>
-                        <Year key={i} currentYear={i} weeksToDisable={numWeeks > 0 ? numWeeks -= 52 : -1} />
+                        <Year key={i} currentYear={i} weeksToDisable={numWeeks - (i * NUM_WEEKS_IN_YEAR)} />
                     </StyledRow>
                 ))}
             </StyledCalendarGrid>

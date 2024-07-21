@@ -15,7 +15,7 @@ const DEFAULT_SETTINGS: SettingsType = {
     desiredAge: 76,
 }
 
-export const SettingsContext = React.createContext<{
+const SettingsContext = React.createContext<{
     state: SettingsType,
     dispatch: React.Dispatch<Action>
 }>({
@@ -47,4 +47,8 @@ function SettingsProvider({ children }: { children: React.ReactNode }) {
     )
 }
 
-export default SettingsProvider;
+function useSettingsContext() {
+    return React.useContext(SettingsContext);
+}
+
+export { useSettingsContext, SettingsProvider }

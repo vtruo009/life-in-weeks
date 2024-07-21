@@ -11,7 +11,7 @@ import {
     InputAdornment,
     TextField
 } from "@mui/material";
-import { useSettingsContext } from "../../contexts/helpers";
+import { useSettingsContext } from "../../contexts/SettingsContext";
 
 const StyledSettingsButton = styled.button`
     position: absolute;
