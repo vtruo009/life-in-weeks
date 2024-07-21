@@ -1,5 +1,5 @@
-import Calendar from "./components/Calendar"
-import SettingsProvider from "./contexts/SettingsContext";
+import Calendar from "./components/Calendar";
+import { SettingsProvider } from "./contexts/SettingsContext";
 
 function App() {
 	return (
