@@ -1,6 +1,5 @@
 import styled from "styled-components";
-import Square from "../common/Square";
-import { SQUARE_USAGE } from "../utils/mixins";
+import EmptySquare from "./EmptySquare";
 
 const NUM_WEEKS_IN_YEAR: number = 52;
 
@@ -11,7 +10,7 @@ const StyledYear = styled.div`
     margin: 0px 0px 6px 0px;
 `;
 
-const StyledColumn = styled.div<{ showColumnCounter: boolean }>`
+const StyledColumn = styled.div<{ $showColumnCounter: boolean }>`
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -19,17 +18,17 @@ const StyledColumn = styled.div<{ showColumnCounter: boolean }>`
     .week-count {
         font-size: 12px;
         margin: 0px 0px 3px 0px;
-        visibility: ${props => props.showColumnCounter ? "visible" : "hidden"};
+        visibility: ${props => props.$showColumnCounter ? "visible" : "hidden"};
     }
 `;
 
-function Year(props: { year: number }) {
+function Year({ year }: { year: number }) {
     return (
         <StyledYear>
             {Array.from({ length: NUM_WEEKS_IN_YEAR }, (_, i) => (
-                <StyledColumn showColumnCounter={(i === 0 || (i + 1) % 5 === 0)}>
-                    {props.year === 0 && <p id="week-count" className="week-count">{i + 1}</p>}
-                    <Square key={i} color='none' usedAs={SQUARE_USAGE.YEAR} />
+                <StyledColumn $showColumnCounter={(i === 0 || (i + 1) % 5 === 0)}>
+                    {year === 0 && <p id="week-count" className="week-count">{i + 1}</p>}
+                    <EmptySquare />
                 </StyledColumn>
             ))}
         </StyledYear>

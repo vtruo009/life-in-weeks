@@ -1,22 +1,29 @@
 import styled from "styled-components";
-import { SQUARE_USAGE } from "../utils/mixins";
+import React from "react";
 
-const StyledWeek = styled.div<{ squareColor: string }>`
-    width: 12px;
-    height: 12px;
+const StyledSquare = styled.button<{ $color: string }>`
     border: 1px solid black;
-    background-color: ${({ squareColor }) => squareColor};
+    width: 14px;
+    height: 14px;
+    padding: 0px;
+    cursor: pointer;
+    background-color: ${({ $color: $color }) => $color};
+
+    &:disabled {
+        cursor: default;
+    }
 `;
 
 interface SquareProps {
     color: string;
-    usedAs: SQUARE_USAGE;
-}
+    disabled?: boolean;
+    OnClick?: () => void;
+};
 
-function Square(props: SquareProps) {
+const Square = React.forwardRef<HTMLButtonElement, SquareProps>(({ color, disabled = false, OnClick: handleClick }, ref) => {
     return (
-        <StyledWeek squareColor={props.color} />
+        <StyledSquare $color={color} disabled={disabled} onClick={handleClick} ref={ref} />
     );
-}
+});
 
 export default Square;
