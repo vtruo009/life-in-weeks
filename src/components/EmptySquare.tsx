@@ -3,9 +3,9 @@ import Square from "../common/Square";
 import { Popover, ArrowContainer } from "react-tiny-popover";
 import Rating from "./Rating";
 
-function EmptySquare({ elapsed = false }: { elapsed?: boolean }) {
+function EmptySquare({ isDisabled = false }: { isDisabled?: boolean }) {
     const [isOpen, setIsOpen] = React.useState(false);
-    const [color, setColor] = React.useState(elapsed ? 'black' : 'transparent');
+    const [color, setColor] = React.useState(isDisabled ? 'black' : 'transparent');
     const buttonRef = React.useRef<HTMLButtonElement>(null);
 
     return (

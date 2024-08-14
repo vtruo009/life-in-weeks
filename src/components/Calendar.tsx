@@ -46,7 +46,7 @@ function calculateNumWeeks(dob: Date): number {
 
 function Calendar() {
     const { dob, desiredAge } = useSettingsContext().state;
-    let numWeeks: number = calculateNumWeeks(dob);
+    const numWeeks: number = calculateNumWeeks(dob);
 
     return (
         <StyledCalendar>
