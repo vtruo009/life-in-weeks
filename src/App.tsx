@@ -1,9 +1,12 @@
-import Calendar from "./components/Calendar"
+import Calendar from "./components/Calendar";
+import { SettingsProvider } from "./contexts/SettingsContext";
 
 function App() {
 	return (
-		<Calendar />
+		<SettingsProvider>
+			<Calendar />
+		</SettingsProvider>
 	);
 }
 
-export default App
+export default App;
