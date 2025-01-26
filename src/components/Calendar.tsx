@@ -3,7 +3,8 @@ import Year from './Year';
 import Rating from './Rating';
 import Settings from './SettingsPage/Settings';
 import { useSettingsContext } from '../contexts/SettingsContext';
-import { NUM_WEEKS_IN_YEAR, MS_IN_A_WEEK } from '../utils/mixins';
+import { NUM_WEEKS_IN_YEAR } from '../utils/mixins';
+import { calcNumWeeks } from '../utils/calendar-helpers';
 
 const StyledCalendar = styled.div`
 	width: fit-content;
@@ -38,23 +39,17 @@ const StyledRow = styled.div<{ $showRowCounter: boolean }>`
 	}
 `;
 
-function calculateNumWeeks(dob: Date): number {
-	const today = new Date();
-	const timeBetweenTwoDates = (today.getTime() - dob.getTime()) / MS_IN_A_WEEK;
-	return Math.round(timeBetweenTwoDates);
-}
-
 function Calendar() {
-	const { dob, desiredAge } = useSettingsContext().state;
-	const numWeeks: number = calculateNumWeeks(dob);
+	const { state } = useSettingsContext();
+	const numWeeksPassed: number = calcNumWeeks(state.dob);
 
 	return (
 		<StyledCalendar>
 			<Settings />
-			<h1>{desiredAge} Years of My Life</h1>
+			<h1>{state.desiredAge} Years of My Life</h1>
 			<Rating compact={false} />
 			<StyledCalendarGrid>
-				{Array.from({ length: desiredAge }, (_, i) => (
+				{Array.from({ length: state.desiredAge }, (_, i) => (
 					<StyledRow $showRowCounter={i % 5 === 0}>
 						<p id='age-count' className='age-count'>
 							{i}
@@ -62,7 +57,7 @@ function Calendar() {
 						<Year
 							key={i}
 							currentYear={i}
-							weeksToDisable={numWeeks - i * NUM_WEEKS_IN_YEAR}
+							weeksToDisable={numWeeksPassed - i * NUM_WEEKS_IN_YEAR}
 						/>
 					</StyledRow>
 				))}

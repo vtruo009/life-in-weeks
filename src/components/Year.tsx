@@ -36,7 +36,7 @@ function Year(props: YearProps) {
 							{i + 1}
 						</p>
 					)}
-					<EmptySquare key={i} isDisabled={props.weeksToDisable - i >= 0} />
+					<EmptySquare key={i} isDisabled={props.weeksToDisable - i > 0} />
 				</StyledColumn>
 			))}
 		</StyledYear>
