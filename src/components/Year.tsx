@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import EmptySquare from './EmptySquare';
+// import EmptySquare from './EmptySquare';
 import { NUM_WEEKS_IN_YEAR } from '../utils/mixins';
 
 const StyledYear = styled.div`
@@ -21,6 +21,15 @@ const StyledColumn = styled.div<{ $showColumnCounter: boolean }>`
 	}
 `;
 
+const StyledSquare = styled.div`
+	border: 1px solid black;
+	fill: 'black';
+	width: 14px;
+	height: 14px;
+	padding: 0px;
+	/* background-color: 'black'; */
+`;
+
 interface YearProps {
 	currentYear: number;
 	weeksToDisable: number;
@@ -36,7 +45,7 @@ function Year(props: YearProps) {
 							{i + 1}
 						</p>
 					)}
-					<EmptySquare key={i} isDisabled={props.weeksToDisable - i > 0} />
+					<StyledSquare />
 				</StyledColumn>
 			))}
 		</StyledYear>

@@ -1,40 +1,21 @@
 import { useRef, useState } from 'react';
-import Square from '../common/Square';
 import { Popover, ArrowContainer } from 'react-tiny-popover';
-import Rating from './Rating';
+import { styled } from 'styled-components';
+
+const StyledSquare = styled.div`
+	border: 1px solid black;
+	fill: 'black';
+	width: 14px;
+	height: 14px;
+	padding: 0px;
+	/* background-color: 'black'; */
+`;
 
 function EmptySquare({ isDisabled = false }: { isDisabled?: boolean }) {
 	const [isOpen, setIsOpen] = useState(false);
-	const [color, setColor] = useState(isDisabled ? 'black' : 'transparent');
 	const buttonRef = useRef<HTMLButtonElement>(null);
 
-	return (
-		<Popover
-			isOpen={isOpen}
-			containerStyle={{ padding: '5px', top: '5px' }}
-			onClickOutside={() => setIsOpen(false)}
-			content={({ childRect, popoverRect }) => (
-				<ArrowContainer
-					position='top'
-					arrowSize={8}
-					arrowStyle={{ bottom: '5px' }}
-					style={{ width: '100px', display: 'flex' }}
-					arrowColor={'lightgray'}
-					childRect={childRect}
-					popoverRect={popoverRect}
-				>
-					<Rating compact handleClick={setColor} />
-				</ArrowContainer>
-			)}
-		>
-			<Square
-				disabled={color === 'black'}
-				color={color}
-				handleClick={() => setIsOpen(!isOpen)}
-				ref={buttonRef}
-			/>
-		</Popover>
-	);
+	return <StyledSquare />;
 }
 
 export default EmptySquare;
