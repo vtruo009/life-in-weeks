@@ -1,14 +1,22 @@
-import React from 'react';
-import Square from '../common/Square';
+import { useRef, useState } from 'react';
 import { Popover, ArrowContainer } from 'react-tiny-popover';
 import Rating from './Rating';
+import { useSettingsContext } from '../contexts/SettingsContext';
+import { NUM_WEEKS_IN_YEAR } from '../utils/mixins';
+import Square from '../common/Square';
 
-function EmptySquare({ isDisabled = false }: { isDisabled?: boolean }) {
-	const [isOpen, setIsOpen] = React.useState(false);
-	const [color, setColor] = React.useState(
-		isDisabled ? 'black' : 'transparent'
-	);
-	const buttonRef = React.useRef<HTMLButtonElement>(null);
+function EmptySquare({
+	currYear,
+	currWeek,
+}: {
+	currYear: number;
+	currWeek: number;
+}) {
+	const { state } = useSettingsContext();
+	const [isOpen, setIsOpen] = useState(false);
+	const [color, setColor] = useState('transparent');
+	const disabled = currWeek + NUM_WEEKS_IN_YEAR * currYear < state.weeksLived;
+	const buttonRef = useRef<HTMLButtonElement>(null);
 
 	return (
 		<Popover
@@ -30,8 +38,8 @@ function EmptySquare({ isDisabled = false }: { isDisabled?: boolean }) {
 			)}
 		>
 			<Square
-				disabled={color === 'black'}
-				color={color}
+				color={disabled ? 'black' : color}
+				disabled={disabled}
 				handleClick={() => setIsOpen(!isOpen)}
 				ref={buttonRef}
 			/>

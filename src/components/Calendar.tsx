@@ -2,9 +2,7 @@ import styled from 'styled-components';
 import Year from './Year';
 import Rating from './Rating';
 import Settings from './SettingsPage/Settings';
-import { useSettingsContext } from '../contexts/SettingsContext';
-import { NUM_WEEKS_IN_YEAR } from '../utils/mixins';
-import { calcNumWeeks } from '../utils/calendar-helpers';
+import { useState } from 'react';
 
 const StyledCalendar = styled.div`
 	width: fit-content;
@@ -40,25 +38,20 @@ const StyledRow = styled.div<{ $showRowCounter: boolean }>`
 `;
 
 function Calendar() {
-	const { state } = useSettingsContext();
-	const numWeeksPassed: number = calcNumWeeks(state.dob);
+	const [desiredAge, setDesiredAge] = useState(80);
 
 	return (
 		<StyledCalendar>
-			<Settings />
-			<h1>{state.desiredAge} Years of My Life</h1>
+			<Settings desiredAge={desiredAge} setDesiredAge={setDesiredAge} />
+			<h1>{desiredAge} Years of My Life</h1>
 			<Rating compact={false} />
 			<StyledCalendarGrid>
-				{Array.from({ length: state.desiredAge }, (_, i) => (
+				{Array.from({ length: desiredAge }, (_, i) => (
 					<StyledRow $showRowCounter={i % 5 === 0}>
 						<p id='age-count' className='age-count'>
 							{i}
 						</p>
-						<Year
-							key={i}
-							currentYear={i}
-							weeksToDisable={numWeeksPassed - i * NUM_WEEKS_IN_YEAR}
-						/>
+						<Year key={i} currentYear={i} />
 					</StyledRow>
 				))}
 			</StyledCalendarGrid>

@@ -21,22 +21,17 @@ const StyledColumn = styled.div<{ $showColumnCounter: boolean }>`
 	}
 `;
 
-interface YearProps {
-	currentYear: number;
-	weeksToDisable: number;
-}
-
-function Year(props: YearProps) {
+function Year({ currentYear }: { currentYear: number }) {
 	return (
 		<StyledYear>
 			{Array.from({ length: NUM_WEEKS_IN_YEAR }).map((_, i) => (
 				<StyledColumn $showColumnCounter={i === 0 || (i + 1) % 5 === 0}>
-					{props.currentYear === 0 && (
+					{currentYear === 0 && (
 						<p id='week-count' className='week-count'>
 							{i + 1}
 						</p>
 					)}
-					<EmptySquare key={i} isDisabled={props.weeksToDisable - i > 0} />
+					<EmptySquare key={i} currWeek={i} currYear={currentYear} />
 				</StyledColumn>
 			))}
 		</StyledYear>
