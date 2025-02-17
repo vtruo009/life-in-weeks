@@ -1,14 +1,12 @@
-import React from 'react';
+import { useRef, useState } from 'react';
 import Square from '../common/Square';
 import { Popover, ArrowContainer } from 'react-tiny-popover';
 import Rating from './Rating';
 
 function EmptySquare({ isDisabled = false }: { isDisabled?: boolean }) {
-	const [isOpen, setIsOpen] = React.useState(false);
-	const [color, setColor] = React.useState(
-		isDisabled ? 'black' : 'transparent'
-	);
-	const buttonRef = React.useRef<HTMLButtonElement>(null);
+	const [isOpen, setIsOpen] = useState(false);
+	const [color, setColor] = useState(isDisabled ? 'black' : 'transparent');
+	const buttonRef = useRef<HTMLButtonElement>(null);
 
 	return (
 		<Popover

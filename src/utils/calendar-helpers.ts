@@ -12,5 +12,5 @@ export function calcNumWeeks(dob: Date): number {
 	);
 	const weeksHasPassed =
 		(today.getFullYear() - dob.getFullYear()) * NUM_WEEKS_IN_YEAR;
-	return weeksHasPassed - weeksRemaining - 1;
+	return weeksHasPassed - weeksRemaining;
 }
