@@ -24,7 +24,7 @@ const StyledCalendarGrid = styled.div`
 
 const StyledRow = styled.div<{ $showRowCounter: boolean }>`
 	display: grid;
-	grid-template-areas: '12px 1fr';
+	grid-template-columns: 10px 1fr;
 	grid-gap: 5px;
 	margin: 0px 5px;
 

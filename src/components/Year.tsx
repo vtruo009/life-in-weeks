@@ -5,7 +5,7 @@ import { NUM_WEEKS_IN_YEAR } from '../utils/mixins';
 const StyledYear = styled.div`
 	display: grid;
 	grid-template-columns: repeat(${NUM_WEEKS_IN_YEAR}, minmax(8px, 1fr));
-	grid-gap: 10px;
+	grid-gap: 5px;
 	margin: 0px 0px 6px 0px;
 `;
 
