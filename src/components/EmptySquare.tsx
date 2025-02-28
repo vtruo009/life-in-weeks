@@ -7,15 +7,15 @@ import Square from '../common/Square';
 
 function EmptySquare({
 	currYear,
-	currWeek,
+	weekNum,
 }: {
 	currYear: number;
-	currWeek: number;
+	weekNum: number;
 }) {
 	const { state } = useSettingsContext();
 	const [isOpen, setIsOpen] = useState(false);
 	const [color, setColor] = useState('transparent');
-	const disabled = currWeek + NUM_WEEKS_IN_YEAR * currYear < state.weeksLived;
+	const currWeek = weekNum + NUM_WEEKS_IN_YEAR * currYear;
 	const buttonRef = useRef<HTMLButtonElement>(null);
 
 	return (
@@ -38,8 +38,9 @@ function EmptySquare({
 			)}
 		>
 			<Square
-				color={disabled ? 'black' : color}
-				disabled={disabled}
+				color={currWeek < state.weeksLived ? 'black' : color}
+				lastWeek={currWeek > 0 && currWeek === state.weeksLived}
+				disabled={currWeek != state.weeksLived}
 				handleClick={() => setIsOpen(!isOpen)}
 				ref={buttonRef}
 			/>
