@@ -31,7 +31,7 @@ function Year({ currentYear }: { currentYear: number }) {
 							{i + 1}
 						</p>
 					)}
-					<EmptySquare key={i} currWeek={i} currYear={currentYear} />
+					<EmptySquare key={i} weekNum={i} currYear={currentYear} />
 				</StyledColumn>
 			))}
 		</StyledYear>
