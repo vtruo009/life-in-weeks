@@ -24,16 +24,21 @@ const StyledCalendarGrid = styled.div`
 
 const StyledRow = styled.div<{ $showRowCounter: boolean }>`
 	display: grid;
-	grid-template-areas: '12px 1fr';
+	grid-template-columns: 10px 1fr;
 	grid-gap: 5px;
 	margin: 0px 5px;
+	align-items: end;
 
 	.age-count {
 		text-align: end;
-		width: 12px;
-		font-size: 12px;
+		width: 10px;
+		font-size: 10px;
 		margin: 0px 3px 6px 0px;
 		visibility: ${(props) => (props.$showRowCounter ? 'visible' : 'hidden')};
+	}
+
+	&.decade {
+		margin-bottom: 1rem;
 	}
 `;
 
@@ -47,7 +52,7 @@ function Calendar() {
 			<Rating compact={false} />
 			<StyledCalendarGrid>
 				{Array.from({ length: desiredAge }, (_, i) => (
-					<StyledRow $showRowCounter={i % 5 === 0}>
+					<StyledRow $showRowCounter={i % 5 === 0} className={`${i !== 0 && i % 10 === 0 ? 'decade' : ''}`}>
 						<p id='age-count' className='age-count'>
 							{i}
 						</p>

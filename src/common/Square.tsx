@@ -3,8 +3,8 @@ import { forwardRef } from 'react';
 
 const StyledSquare = styled.button<{ $color: string }>`
 	border: 1px solid black;
-	width: 14px;
-	height: 14px;
+	width: 10px;
+	height: 10px;
 	padding: 0px;
 	cursor: pointer;
 	background-color: ${({ $color: $color }) => $color};
